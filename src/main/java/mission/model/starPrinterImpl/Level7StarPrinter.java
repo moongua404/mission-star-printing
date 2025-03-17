@@ -29,7 +29,7 @@ public class Level7StarPrinter implements StarPrinter {
         return curStar;
     }
 
-    public void print(int size) {
-        starRecur(size).forEach(System.out::println);
+    public List<StringBuilder> getStar(int size) {
+        return starRecur(size).stream().map(StringBuilder::new).toList();
     }
 }

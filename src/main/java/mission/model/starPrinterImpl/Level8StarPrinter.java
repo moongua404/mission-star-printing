@@ -49,7 +49,7 @@ public class Level8StarPrinter implements StarPrinter {
         );
     }
 
-    public void print(int size) {
+    public List<StringBuilder>  getStar(int size) {
         List<StringBuilder> canvas = drawCanvas(getWidth(size-1), getHeight(size-1));
         AtomicInteger xPos = new AtomicInteger();
         AtomicInteger yPos = new AtomicInteger();
@@ -66,6 +66,6 @@ public class Level8StarPrinter implements StarPrinter {
                 }
         );
 
-        canvas.forEach(sb -> System.out.println(sb.toString()));
+        return canvas;
     }
 }

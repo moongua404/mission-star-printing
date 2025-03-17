@@ -1,6 +1,8 @@
 package mission.model;
 
+import java.util.List;
+
 public interface StarPrinter {
-    void print(int size);
+    List<StringBuilder> getStar(int size);
     int getLevel();
 }

@@ -1,5 +1,6 @@
 package mission.model.starPrinterImpl;
 
+import java.util.List;
 import java.util.stream.IntStream;
 import mission.model.StarPrinter;
 
@@ -8,11 +9,9 @@ public class Level3StarPrinter implements StarPrinter {
         return 3;
     }
 
-    public void print(int size) {
-        IntStream.range(0, size)
-                .forEach(i -> System.out.printf(
-                        " ".repeat(i) +
-                        "*".repeat(2 * (size - i) - 1
-                ) + "%n"));
+    public List<StringBuilder> getStar(int size) {
+        return IntStream.range(0, size)
+                .mapToObj(i -> new StringBuilder(" ".repeat(i) + "*".repeat(2 * (size - i) - 1)))
+                .toList();
     }
 }

@@ -2,7 +2,6 @@ package mission.controller;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 import mission.model.starPrinterImpl.Level1StarPrinter;
 import mission.model.starPrinterImpl.Level2StarPrinter;
 import mission.model.starPrinterImpl.Level3StarPrinter;
@@ -19,28 +18,28 @@ public class StarPrintingController {
     InputView inputView = new InputView();
 
     public void run() {
-        switcher(inputView.getLevel()).print(inputView.getSize());
-
+        try {
+            switcher(inputView.getLevel()).getStar(inputView.getSize()).forEach(System.out::println);
+        } catch (OutOfMemoryError e) {
+            throw new IllegalStateException("[ERROR] 메모리 초과");
+        } catch (Exception e) {
+            throw new IllegalStateException("[ERROR] 알 수 없는 에러가 발생했습니다.");
+        }
     }
 
     private List<StarPrinter> composeStarPrinters() {
-        List<StarPrinter> printers = new ArrayList<StarPrinter>();
-        printers.add(new Level1StarPrinter());
-        printers.add(new Level2StarPrinter());
-        printers.add(new Level3StarPrinter());
-        printers.add(new Level4StarPrinter());
-        printers.add(new Level5StarPrinter());
-        printers.add(new Level6StarPrinter());
-        printers.add(new Level7StarPrinter());
-        printers.add(new Level8StarPrinter());
-        printers.add(new Level9StarPrinter());
-        return printers;
+        return List.of(
+                new Level1StarPrinter(), new Level2StarPrinter(), new Level3StarPrinter(),
+                new Level4StarPrinter(), new Level5StarPrinter(), new Level6StarPrinter(),
+                new Level7StarPrinter(), new Level8StarPrinter(), new Level9StarPrinter()
+        );
     }
+
 
     public StarPrinter switcher(int level) {
         return composeStarPrinters().stream()
                 .filter(printer -> printer.getLevel() == level)
                 .findFirst()
-                .orElseThrow();
+                .orElseThrow(() -> new IllegalArgumentException("[ERROR] 1~9 사이의 숫자가 아닙니다."));
     }
 }
