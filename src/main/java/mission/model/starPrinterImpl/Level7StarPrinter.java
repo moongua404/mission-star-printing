@@ -2,7 +2,6 @@ package mission.model.starPrinterImpl;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.IntStream;
 import mission.model.StarPrinter;
 
 public class Level7StarPrinter implements StarPrinter {
@@ -20,7 +19,7 @@ public class Level7StarPrinter implements StarPrinter {
             curStar.add(line.repeat(3));
         });
         preStar.forEach(line -> {
-            curStar.add(line + " ".repeat((int) Math.pow(3, size-1)) + line);
+            curStar.add(line + " ".repeat((int) Math.pow(3, size - 1)) + line);
         });
         preStar.forEach(line -> {
             curStar.add(line.repeat(3));

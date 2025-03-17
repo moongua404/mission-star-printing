@@ -1,12 +1,11 @@
 package mission.controller;
 
-import java.util.ArrayList;
 import java.util.List;
+import mission.model.StarPrinter;
 import mission.model.starPrinterImpl.Level1StarPrinter;
 import mission.model.starPrinterImpl.Level2StarPrinter;
 import mission.model.starPrinterImpl.Level3StarPrinter;
 import mission.model.starPrinterImpl.Level4StarPrinter;
-import mission.model.StarPrinter;
 import mission.model.starPrinterImpl.Level5StarPrinter;
 import mission.model.starPrinterImpl.Level6StarPrinter;
 import mission.model.starPrinterImpl.Level7StarPrinter;
