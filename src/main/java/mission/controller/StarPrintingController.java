@@ -13,13 +13,21 @@ import mission.model.starPrinterImpl.Level7StarPrinter;
 import mission.model.starPrinterImpl.Level8StarPrinter;
 import mission.model.starPrinterImpl.Level9StarPrinter;
 import mission.view.InputView;
+import mission.view.OutputView;
 
 public class StarPrintingController {
-    InputView inputView = new InputView();
+    InputView inputView;
+    OutputView outputView;
+
+    public StarPrintingController(InputView inputView, OutputView outputView) {
+        this.inputView = inputView;
+        this.outputView = outputView;
+    }
 
     public void run() {
         try {
-            switcher(inputView.getLevel()).getStar(inputView.getSize()).forEach(System.out::println);
+            List<StringBuilder> star = switcher(inputView.getLevel()).getStar(inputView.getSize());
+            outputView.printStar(star);
         } catch (OutOfMemoryError e) {
             throw new IllegalStateException("[ERROR] 메모리 초과");
         } catch (Exception e) {
@@ -34,7 +42,6 @@ public class StarPrintingController {
                 new Level7StarPrinter(), new Level8StarPrinter(), new Level9StarPrinter()
         );
     }
-
 
     public StarPrinter switcher(int level) {
         return composeStarPrinters().stream()
